@@ -5,7 +5,57 @@
 
     <body>
         <h1>
-            Hello world
+            Welcome to the Hearthstone Arena!
         </h1>
+        <p>
+            <input type="button" onclick="generateHearthMatch();" value="Play turn" />
+           
+        </p>
+        <p>
+            <input type="button" onclick="generateHearthMatch();" value="Opponent's turn" />
+        </p>
+        <p id="results">
+            Waiting for opponent's turn...
+        </p>
     </body>
+    <script>
+    function getMatchParameters() {
+        //Jaina played Mana Wyrm for 1 Mana
+
+        let matchParameters= {};
+        
+        // Names of characters in bucket 1
+        matchParameters.characters=["Jaina","Rexxar","Malfurion","Tyrande","Gul'dan","Uther","Garrosh","Valeera","Morgl the Oracle"];
+
+        //Names of minions in bucket 2
+        matchParameters.minions=["Ragnaros","Plated Beetle","Bloodfen Raptor","Abomination","Deathwing","C'thun","Swamp King Dread","Murloc Tidecaller","Steward of Darkshire"];
+
+        return matchParameters;
+    }
+
+    function generateHearthMatch() {
+        let matchParameters = getMatchParameters();
+
+        let characterPointer=Math.floor(Math.random() * matchParameters.characters.length);
+        let minionPointer=Math.floor(Math.random() * matchParameters.minions.length);
+        
+        let character=matchParameters.characters[characterPointer];
+
+        let minion=matchParameters.minions[minionPointer];
+        
+        let mana=Math.floor(Math.random() *10);
+
+        let match=character + " plays " + minion + " for " + mana + " mana ";
+
+        // Now update the relevant paragraphs with my match result
+
+        document.getElementById("results").innerHTML=match;
+         
+
+        return;
+
+
+    }
+
+    </script>
 </html>
